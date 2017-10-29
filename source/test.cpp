@@ -12,7 +12,11 @@
 int main(int argc, char * argv[])
 {
 
+    CSerial ss;
 
+    ss.Open(argv[1]);
+
+    getchar();
 
     return 0;
 }
