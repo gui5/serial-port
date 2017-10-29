@@ -17,8 +17,13 @@ public:
 
     int GetSerial(){return m_fdSerial;};
 
+    char * Read();
+
 private:
     int m_fdSerial;
     uint64_t m_uBaudRate;
     char * m_pszSerialDevice;
+    char * m_pszSerialBuffer;
+    char m_szBuffer[4096];
+    int m_nBytes;
 };

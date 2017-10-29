@@ -6,12 +6,14 @@
 #include <errno.h>   /* Error number definitions */
 #include <termios.h> /* POSIX terminal control definitions */
 
+
 CSerial::CSerial():
     m_fdSerial(-1),
     m_uBaudRate(0),
-    m_pszSerialDevice(nullptr)
+    m_pszSerialDevice(nullptr),
+    m_pszSerialBuffer(nullptr)
 {
-
+    m_pszSerialBuffer = m_szBuffer;
 }
 
 bool CSerial::Open(char * t_pszSerialDevice)
@@ -55,6 +57,13 @@ bool CSerial::Close()
         close(m_fdSerial);
     }
     return false;
+}
+
+char * CSerial::Read()
+{
+    memset(m_szBuffer,'\0',4096);
+    read(m_fdSerial,m_szBuffer,4096);
+    return m_pszSerialBuffer;
 }
 
 CSerial::~CSerial()

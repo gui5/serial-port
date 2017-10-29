@@ -18,7 +18,10 @@ int main(int argc, char * argv[])
 
     ss.Open(argv[1]);
     ss.SetBaudRate(B9600);
-    
+    while(true)
+    {
+        printf("%s",ss.Read());
+    }
     getchar();
 
     return 0;
